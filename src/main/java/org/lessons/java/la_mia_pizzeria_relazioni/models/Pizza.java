@@ -2,13 +2,16 @@ package org.lessons.java.la_mia_pizzeria_relazioni.models;
 
 import java.math.BigDecimal;
 
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -43,11 +46,21 @@ public class Pizza {
     @Positive(message = "Il prezzo deve essere maggiore di zero")
     private BigDecimal price;
 
-    // relazione tra una pizza e una o piú offerte
+    // relazione tra una pizza e una o piú offerte --> OneToMany
     @OneToMany(mappedBy = "pizza")
     private List<Offerta> offerta;
-    // getters & setters
 
+    // relazione tra tante pizze e tanti ingredienti --> ManyToMany
+    @ManyToMany
+    @JoinTable(
+        name = "ingrediente_pizza",
+        joinColumns = @JoinColumn(name = "pizza_id"),
+        inverseJoinColumns = @JoinColumn(name = "ingrediente_id")
+    )
+    private List<Ingrediente> ingredienti;
+
+
+    // getters & setters
     public List<Offerta> getOfferta() {
         return this.offerta;
     }

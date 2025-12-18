@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="~{fragments/resources :: head}" />
+    <title>Ingredienti</title>
+</head>
+
+<body>
+    <header>
+        <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    </header>
+    <h1 class="text-center fw-bold">Ingredienti</h1>
+    <hr>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <table class="table" th:if="${ingredienti.size() > 0}">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Descrizione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="ingredienti : ${ingredienti}" th:object="${ingredienti}">
+                                <td>[[*{nomeIngrediente}]]</td>
+                                <td>[[*{descrizioneIngrediente}]]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p th:text="'La lista di ingredienti non é disponibile'" th:unless="${ingredienti.size() > 0}"></p>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <th:block th:replace="~{fragments/resources :: body}" />
+</body>
+
+</html>

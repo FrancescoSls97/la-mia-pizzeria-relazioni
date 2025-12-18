@@ -21,6 +21,7 @@ public class OffertaController {
     @Autowired
     private OffertaRepository offertaRepository;
 
+    // create
     @PostMapping("/create")
     private String store(@Valid @ModelAttribute("offerta") Offerta formOfferta, BindingResult bindingResult,
             Model model) {
@@ -32,6 +33,7 @@ public class OffertaController {
         return "redirect:/pizza/" + formOfferta.getPizza().getId();
     }
 
+    //create
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("offerta", offertaRepository.findById(id).get());
