@@ -10,8 +10,10 @@
     <header>
         <nav th:replace="~{fragments/navbar :: navbar}"></nav>
     </header>
+
     <h1 class="text-center fw-bold">Ingredienti</h1>
     <hr>
+
     <main>
         <div class="container">
             <div class="row">
@@ -22,22 +24,34 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>Descrizione</th>
+                                <th></th>
                             </tr>
                         </thead>
+
                         <tbody>
-                            <tr th:each="ingredienti : ${ingredienti}" th:object="${ingredienti}">
-                                <td>[[*{nomeIngrediente}]]</td>
-                                <td>[[*{descrizioneIngrediente}]]</td>
+                            <tr th:each="ingrediente : ${ingredienti}">
+                                <td th:text="${ingrediente.nomeIngrediente}"></td>
+                                <td th:text="${ingrediente.descrizioneIngrediente}"></td>
+                                <td>
+                                    <a th:href="@{/ingrediente/edit/{id}(id=${ingrediente.id})}"
+                                        class="btn btn-warning">Modifica</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <p th:text="'La lista di ingredienti non é disponibile'" th:unless="${ingredienti.size() > 0}"></p>
+                    <p th:text="'La lista di ingredienti non è disponibile'" th:unless="${ingredienti.size() > 0}"
+                        class="fs-3"></p>
+
+                    <a th:href="@{/ingrediente/create}" class="btn btn-primary">
+                        Aggiungi ingrediente
+                    </a>
 
                 </div>
             </div>
         </div>
     </main>
+
     <th:block th:replace="~{fragments/resources :: body}" />
 </body>
 

@@ -33,7 +33,7 @@ public class OffertaController {
         return "redirect:/pizza/" + formOfferta.getPizza().getId();
     }
 
-    //create
+    //edit
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("offerta", offertaRepository.findById(id).get());
