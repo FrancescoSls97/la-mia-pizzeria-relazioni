@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<div class="card" style="width: 18rem;" th:fragment="card" th:object="${pizza}">
+    <img th:src="*{image}" class="card-img-top" th:alt="*{name}">
+    <div class="card-body">
+        <h3 class="card-title">[[*{name}]]</h3>
+        <p class="card-text">[[*{description}]]</p>
+        <p class="card-text">[[*{price}]]</p>
 
-<head>
-</head>
+        <hr>
+        <h5>Ingredienti:</h5>
 
-<body>
-
-    <th:block>
-        <div class="card" style="width: 18rem;" th:fragment="card" th:object="${pizza}">
-            <img th:src="*{image}" class="card-img-top" th:alt="*{name}">
-            <div class="card-body">
-                <h3 class="card-title">[[*{name}]]</h3>
-                <p class="card-text">[[*{description}]]</p>
-                <p class="card-text">[[*{price}]]</p>
-            </div>
-        </div>
-    </th:block>
-
-</body>
-
-</html>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="ingrediente : *{ingredienti}">
+                    <td th:text="${ingrediente.nomeIngrediente}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -2,7 +2,6 @@ package org.lessons.java.la_mia_pizzeria_relazioni.models;
 
 import java.math.BigDecimal;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -52,15 +51,19 @@ public class Pizza {
 
     // relazione tra tante pizze e tanti ingredienti --> ManyToMany
     @ManyToMany
-    @JoinTable(
-        name = "ingrediente_pizza",
-        joinColumns = @JoinColumn(name = "pizza_id"),
-        inverseJoinColumns = @JoinColumn(name = "ingrediente_id")
-    )
+    @JoinTable(name = "ingrediente_pizza", joinColumns = @JoinColumn(name = "pizza_id"), inverseJoinColumns = @JoinColumn(name = "ingrediente_id"))
     private List<Ingrediente> ingredienti;
 
-
     // getters & setters
+
+    public List<Ingrediente> getIngredienti() {
+        return this.ingredienti;
+    }
+
+    public void setIngredienti(List<Ingrediente> ingredienti) {
+        this.ingredienti = ingredienti;
+    }
+
     public List<Offerta> getOfferta() {
         return this.offerta;
     }

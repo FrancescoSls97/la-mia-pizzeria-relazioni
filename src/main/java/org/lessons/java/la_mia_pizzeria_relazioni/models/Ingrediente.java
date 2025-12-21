@@ -1,7 +1,5 @@
 package org.lessons.java.la_mia_pizzeria_relazioni.models;
 
-
-
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -14,17 +12,15 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
-
-
 @Entity
-@Table (name = "ingrediente")
+@Table(name = "ingrediente")
 public class Ingrediente {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     @NotBlank(message = "Inserisci un nome per il tuo ingrediente")
     private String nomeIngrediente;
 
@@ -32,12 +28,19 @@ public class Ingrediente {
     @Column
     private String descrizioneIngrediente;
 
-    // relazione ManyToMany 
+    // relazione ManyToMany
     @ManyToMany(mappedBy = "ingredienti")
     private List<Pizza> pizze;
-    
 
     // getters & setters
+
+    public List<Pizza> getPizze() {
+        return this.pizze;
+    }
+
+    public void setPizze(List<Pizza> pizze) {
+        this.pizze = pizze;
+    }
 
     public Integer getId() {
         return this.id;

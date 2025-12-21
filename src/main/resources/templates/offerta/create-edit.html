@@ -19,7 +19,6 @@
             <div class="row">
                 <div class="col-12">
 
-
                     <form th:action="${edit} ? @{/offerta/edit/{id}(id=${offerta.id})} : @{/offerta/create}"
                         th:object="${offerta}" method="post">
                         <input type="hidden" th:field="*{id}">

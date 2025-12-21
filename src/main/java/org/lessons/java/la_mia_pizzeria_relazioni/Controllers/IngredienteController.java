@@ -30,6 +30,12 @@ public class IngredienteController {
         return "ingrediente/index";
     }
 
+    @GetMapping("/show/{id}")
+    public String show(@PathVariable Integer id, Model model) {
+        model.addAttribute("ingrediente", ingredienteRepository.findById(id).get());
+        return "ingrediente/show";
+    }
+
     // create
     @GetMapping("/create")
     public String create(Model model) {
